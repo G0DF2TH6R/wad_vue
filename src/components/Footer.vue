@@ -14,10 +14,3 @@ export default {
 }
 </script>
 
-<style>
-    footer {
-        text-align: center;
-    }
-
-
-</style>

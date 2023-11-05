@@ -1,5 +1,5 @@
 <template>
-    <div>Posts TO-DO</div>
+    <div class="posts">Posts TO-DO</div>
 </template>
 
 <script>
