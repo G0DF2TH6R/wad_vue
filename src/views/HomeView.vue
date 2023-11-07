@@ -5,7 +5,7 @@
     <Posts/>
     <RightContent/>
   </div>
-  <button>Reset Likes</button>
+  <button v-on:click="ResetAllLikes">Reset Likes</button>
   <Footer/>
 </template>
 
@@ -24,7 +24,13 @@ export default {
     LeftContent,
     RightContent,
     Posts
+  },
+  methods: {
+      ResetAllLikes: function() {
+          this.$store.commit("ResetAllLikes")
+      }
   }
+  
 }
 </script>
 
