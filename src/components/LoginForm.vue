@@ -1,9 +1,9 @@
 <template>
 <form v-on:submit.prevent="validation" class="form">
     <label class="lable" for="email">Email</label>
-    <input type="email" name="email" id="email1" v-model="email" required>
+    <input class = "fInput" type="email" name="email" id="email1" v-model="email" placeholder="email" required>
     <label class="lable" for="password">Password</label>
-    <input type="password" name="password" id="pass1" v-model="password" required>
+    <input class = "fInput" type="password" name="password" id="pass1" v-model="password" placeholder="password" required>
     
     <div v-if="passwordErrors.length > 0" class="error-message">
     <p>Password is not valid. Please follow the conditions:</p>
@@ -77,10 +77,16 @@ methods: {
         flex-direction: column;
         width: 50%;
         margin: auto;
-        padding: 20px;
+        padding: 25px;
         background-color: #cde7ca;
         justify-content: center;
+        border-radius: 1rem;
         
+    }
+    
+    .fInput{
+        font-size: 16;
+        padding: 8px;
     }
 
     #signUp{
@@ -100,6 +106,7 @@ methods: {
         color: black;
         margin-top: 10px;
         margin-bottom: 10px;
+        font-size: 24px;
     }
 
     .error-message {
