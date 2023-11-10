@@ -13,16 +13,20 @@ export default createStore({
       {"id": "7", "likes":"0", "date": "10/10/2022", "author": "Maeve Black", "body": "Algorithms make me wanna go back to bed."},
       {"id": "8", "likes":"0", "date": "08/02/2023", "author": "Jilly Joe", "body": "Web application development is fun!"},
       {"id": "9", "likes":"0", "date": "10/02/2023", "author": "Ronald Donald", "body": "Thinking about the University Ball"}
-    ]
+    ],
+    totalLikes: 0
   },
   getters: {
-    getAllPosts: (state) => state.posts
+    getAllPosts: (state) => state.posts,
+
+    getTotalLikes: (state) => state.totalLikes
   },
   mutations: {
     IncreaseLike: (state, id) => {
       state.posts.forEach(post => {
         if (post.id == id) {
           post.likes = parseInt(post.likes) + 1
+          state.totalLikes += 1;
           console.log(post.likes)
           return
         }
@@ -32,7 +36,8 @@ export default createStore({
       state.posts.forEach(post => {
         post.likes = 0
       })
-    }
+    },
+
   },
   actions: {
   },

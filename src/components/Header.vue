@@ -1,8 +1,8 @@
 <template>
     <nav>
-        <h1>Header component</h1>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/login">Login</RouterLink>
+        <h1>Welcome to PostIt!</h1>
+        <RouterLink to="/" class="link">Home</RouterLink>
+        <RouterLink to="/login" class="link">Login</RouterLink>
     </nav>
 </template>
 
@@ -12,8 +12,3 @@ export default {
 }
 </script>
 
-<style>
-
-
-
-</style>
