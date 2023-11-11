@@ -1,5 +1,5 @@
 <template>
-    <div class ="left-content">Post your thoughts!</div>
+    <div class="left-content">Post your thoughts!</div>
 </template>
 
 <script>
@@ -12,7 +12,6 @@ export default {
     .left-content {
         display: flex;
         justify-content: center;
-        align-items: start;
         margin-top: 5px;
     }
 </style>

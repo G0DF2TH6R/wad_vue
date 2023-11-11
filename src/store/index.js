@@ -27,7 +27,6 @@ export default createStore({
         if (post.id == id) {
           post.likes = parseInt(post.likes) + 1
           state.totalLikes += 1;
-          console.log(post.likes)
           return
         }
       })
@@ -36,6 +35,7 @@ export default createStore({
       state.posts.forEach(post => {
         post.likes = 0
       })
+      state.totalLikes = 0
     },
 
   },
