@@ -1,6 +1,8 @@
 import { createStore } from 'vuex'
 
 export default createStore({
+  strict: true, //so it wouldn't be possible to mutate state outside mutation handlers
+
   state: {
     posts: [
       {"id": "0", "likes":"0", "date": "23/10/2023", "author": "Mary Red", "body": "So many posts to read..."},
