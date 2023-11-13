@@ -25,7 +25,7 @@ export default {
     },
     methods: {
         IncreaseLike: function(id) {
-            this.$store.commit("IncreaseLike", id)
+            this.$store.dispatch("IncreaseLikeAct", id)
         }
     }
 }

@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     ResetAllLikes: function() {
-        this.$store.commit("ResetAllLikes")
+        this.$store.dispatch("ResetAllLikesAct");
     }
   }
   

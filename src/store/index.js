@@ -40,6 +40,12 @@ export default createStore({
 
   },
   actions: {
+    IncreaseLikeAct: (act,id) => {
+      act.commit("IncreaseLike",id);
+    },
+    ResetAllLikesAct: (act) => {
+      act.commit("ResetAllLikes");
+    }
   },
   modules: {
   }
