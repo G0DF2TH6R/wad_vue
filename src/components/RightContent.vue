@@ -1,5 +1,5 @@
 <template>
-    <div class ="right-content">
+    <div class="right-content">
         <h1>Total likes: {{ totalLikes }}</h1>
     </div>
 </template>
@@ -21,7 +21,7 @@ export default {
         flex-direction: column;
         top: 5px;
     }
-   
+
 
     h1 {
         font-size: medium;

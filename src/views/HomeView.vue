@@ -91,7 +91,10 @@ export default {
     padding: 6px;
     padding-left: 10px;
     padding-right: 10px;
+  }
 
+  button:hover {
+    cursor: pointer;
   }
 
   
