@@ -78,7 +78,7 @@ methods: {
         width: 50%;
         margin: auto;
         padding: 25px;
-        background-color: #cde7ca;
+        background-color: #DFE6DA;
         justify-content: center;
         border-radius: 1rem;
         
