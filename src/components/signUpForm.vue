@@ -13,16 +13,14 @@
     </div>
 
     <div class ="buttonsRow">
-    <button type="submit" class="but">login</button>
-    <p>Or</p>
-    <button @click="$router.push('/signUp')" class="but">Signup</button>
+    <button type="submit" class="but">signUp</button>
     </div>
 </form>
 </template>
 
 <script>
 export default {
-name: "LoginForm",
+name: "signUpForm",
 data() {
     return {
     password: "",
@@ -65,9 +63,6 @@ methods: {
 },
 };
 </script>
-
-
-
 
 
 
