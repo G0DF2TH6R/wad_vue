@@ -1,19 +1,12 @@
 <template>
-<form v-on:submit.prevent="validation" class="form">
+<form class="form">
     <label class="lable" for="email">Email</label>
     <input class="fInput" type="email" name="email" id="email1" v-model="email" placeholder="email" required>
     <label class="lable" for="password">Password</label>
     <input class="fInput" type="password" name="password" id="pass1" v-model="password" placeholder="password" required>
     
-    <div v-if="passwordErrors.length > 0" class="error-message">
-    <p>Password is not valid. Please follow the conditions:</p>
-    <ul>
-        <li v-for="error in passwordErrors" :key="error">{{ error }}</li>
-    </ul>
-    </div>
-
     <div class ="buttonsRow">
-    <button type="submit" class="but">login</button>
+    <button type="submit" @click="LogIn" class="but">login</button>
     <p>Or</p>
     <button @click="$router.push('/signUp')" class="but">Signup</button>
     </div>
@@ -31,36 +24,31 @@ data() {
     };
 },
 methods: {
-    validation: function() {
-    this.passwordErrors = [];
 
-    if (this.password.length <= 8 || this.password.length >= 15) {
-        this.passwordErrors.push("Password should be between 8 and 15 characters.");
-    }
-
-    if (!/^[A-Z]/.test(this.password)) {
-        this.passwordErrors.push("Password should start with an uppercase alphabet character.");
-    }
-
-    if ((this.password.match(/[a-z]/g) || []).length < 2) {
-        this.passwordErrors.push("Password should include at least two lowercase alphabet characters.");
-    }
-
-    if (!/\d/.test(this.password)) {
-        this.passwordErrors.push("Password should include at least one numeric value.");
-    }
-
-    if (!/_/.test(this.password)) {
-        this.passwordErrors.push("Password should include the character '_'.");
-    }
-
-    if (this.passwordErrors.length === 0) {
-        console.log("Password is correct");
-        this.password = ""
-        this.email = ""
-        
-    }
-
+LogIn() {
+    var data = {
+    email: this.email,
+    password: this.password
+    };
+    // using Fetch - post method - send an HTTP post request to the specified URI with the defined body
+    fetch("http://localhost:3000/auth/login", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+    },
+        credentials: 'include', //  Don't forget to specify this if you need cookies
+        body: JSON.stringify(data),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+    console.log(data);
+    //this.$router.push("/");
+    location.assign("/");
+    })
+    .catch((e) => {
+    console.log(e);
+    console.log("error");
+    });
     },
 },
 };
