@@ -13,7 +13,7 @@
     </div>
 
     <div class ="buttonsRow">
-        <button @click="SignUp" class="SignUp">SignUp</button>
+        <button type="submit"  class="but" @click="handleSignUp">signUp</button>
     </div>
 </form>
 </template>
@@ -54,11 +54,16 @@ methods: {
 
     if (this.passwordErrors.length === 0) {
         console.log("Password is correct");
-        this.password = ""
-        this.email = ""
         
     }
 
+    },
+    handleSignUp() {
+        this.validation(); 
+
+        if (this.passwordErrors.length === 0) {
+            this.SignUp();
+        }
     },
     SignUp() {
       var data = {
