@@ -112,6 +112,42 @@ app.get("/auth/logout", (_req, res) => {
     res.status(202).clearCookie("jwt").json({"Msg": "cookie cleared" }).send
 })
 
+//not done yet - needs date too!
+app.post("/addpost", async(req,res) => {
+    try {
+        console.log("request to add a post");
+        const post = req.body;
+        const newpost = await pool.query(
+            "INSERT INTO posttable(body) values ($1) RETURNING*", [post.body]
+            // * means that everything will be returned!
+    
+        );
+        res.json(newpost);
+    }
+    catch (err) {
+        console.log("problem with posting a new post")
+        console.error(err.message)
+    }
+
+})
+
+//not working yet - because no database posts in home!
+app.delete("/deleteAll", async(_req, res) => {
+
+    try {
+        console.log("delete all posts request");
+        const deleteall = await pool.query(
+            "DELETE * FROM posttable"
+        );
+        res.json(deleteall);
+    }
+    catch (err) {
+        console.log("problem with deleting posts");
+        console.error(err.message);
+    }
+
+})
+
 app.listen(port, () => {
     console.log("Server is listening to port " + port)
 });

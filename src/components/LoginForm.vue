@@ -52,68 +52,61 @@
         },
     },
     };
-    </script>
+    </script>    
     
-    
-    
-    
-    
-    
-    
-    
-    <style>
-    
-    
-        .form{
-            display: flex;
-            flex-direction: column;
-            width: 50%;
-            margin: auto;
-            padding: 25px;
-            background-color: #DFE6DA;
-            justify-content: center;
-            border-radius: 1rem;
-            
-        }
-        
-        .fInput{
-            font-size: 16;
-            padding: 8px;
-            margin-bottom: 10px;
-        }
-    
-        .but{
+<style>
+
+
+    .form{
+        display: flex;
+        flex-direction: column;
+        width: 50%;
         margin: auto;
-        background: #5E5DF0;
-        border-radius: 999px;
-        color: #FFFFFF;
-        cursor: pointer;
-        font-size: 16px;
-        line-height: 24px;
-        padding: 8px 18px;
-        width: fit-content;
+        padding: 25px;
+        background-color: #DFE6DA;
+        justify-content: center;
+        border-radius: 1rem;
+        
+    }
+    
+    .fInput{
+        font-size: 16;
+        padding: 8px;
+        margin-bottom: 10px;
+    }
+
+    .but{
+    margin: auto;
+    background: #5E5DF0;
+    border-radius: 999px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 8px 18px;
+    width: fit-content;
+    margin-top: 10px;
+    }
+
+    .lable{
+        color: black;
         margin-top: 10px;
-        }
-    
-        .lable{
-            color: black;
-            margin-top: 10px;
-            margin-bottom: 10px;
-            font-size: 24px;
-        }
-    
-        .error-message {
-        color: red;
-        margin-top: 10px;
-        }
-    
-        .buttonsRow{
-            display: flex;
-            justify-content: space-evenly ;
-            color: black;
-            font-size: 20px;
-        }
-    
-    
-    
-    </style>
+        margin-bottom: 10px;
+        font-size: 24px;
+    }
+
+    .error-message {
+    color: red;
+    margin-top: 10px;
+    }
+
+    .buttonsRow{
+        display: flex;
+        justify-content: space-evenly ;
+        color: black;
+        font-size: 20px;
+    }
+
+
+
+</style>

@@ -6,7 +6,9 @@
     <Posts/>
     <RightContent/>
   </div>
+  <button @click="$router.push('/addPost')">Add post</button>
   <button v-on:click="ResetAllLikes">Reset Likes</button>
+  <button v-on:click="DeleteAll">Delete all</button>
   <Footer/>
 </template>
 
@@ -53,6 +55,12 @@ export default {
             console.log("error logout");
         });
     },
+
+    DeleteAll() {
+      fetch("http://localhost:3000/deleteAll", {
+        credentials: 'include',
+      })
+    }
     
   }
   
@@ -116,6 +124,10 @@ export default {
     padding: 6px;
     padding-left: 10px;
     padding-right: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 
   button:hover {
