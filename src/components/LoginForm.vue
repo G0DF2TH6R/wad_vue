@@ -13,9 +13,9 @@
     </div>
 
     <div class ="buttonsRow">
-    <button type="submit" class="but">login</button>
-    <p>Or</p>
-    <button @click="$router.push('/signUp')" class="but">Signup</button>
+        <button @click="LogIn"  class="but">LogIn</button>
+        <p>Or</p>
+        <button @click="$router.push('/signUp')" class="but">Signup</button>
     </div>
 </form>
 </template>
@@ -62,14 +62,33 @@ methods: {
     }
 
     },
+    LogIn() {
+      var data = {
+        email: this.email,
+        password: this.password
+      };
+      //post request to the specified URI with the defined body
+      fetch("http://localhost:3000/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+          credentials: 'include', //for cookies
+          body: JSON.stringify(data),
+      })
+      .then((response) => response.json())
+      .then((data) => {
+      console.log(data);
+      this.$router.push("/");
+      })
+      .catch((e) => {
+        console.log(e);
+        console.log("error");
+      });
+    },
 },
 };
 </script>
-
-
-
-
-
 
 
 

@@ -16,6 +16,18 @@ export default {
     Header,
     Footer,
     SignUpForm
+  },
+
+  data: function() {
+    return {
+      email: '',
+      password: '',
+    }  
+  },
+  methods: {
+
+    
+    
   }
 }
 </script>

@@ -13,7 +13,7 @@
     </div>
 
     <div class ="buttonsRow">
-    <button type="submit" class="but">signUp</button>
+        <button @click="SignUp" class="SignUp">SignUp</button>
     </div>
 </form>
 </template>
@@ -60,13 +60,34 @@ methods: {
     }
 
     },
+    SignUp() {
+      var data = {
+        email: this.email,
+        password: this.password
+      };
+      // through server.js send a post request with header,body
+      fetch("http://localhost:3000/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify(data),
+      })
+      //see if it went through
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        this.$router.push("/");//go to posts page
+      })
+      .catch((e) => {
+        console.log("error with authentication");
+        console.log(e);
+      });
+    }
 },
 };
 </script>
-
-
-
-
 
 <style>
 

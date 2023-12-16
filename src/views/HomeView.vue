@@ -1,5 +1,6 @@
 <template>
   <Header/>
+    <button v-if = "authResult" @click="Logout">Logout</button>
   <div class="wrapper">
     <LeftContent/>
     <Posts/>
@@ -15,6 +16,7 @@ import Footer from '@/components/Footer.vue';
 import LeftContent from '@/components/LeftContent.vue';
 import RightContent from '@/components/RightContent.vue';
 import Posts from '@/components/Posts.vue';
+import auth from "../auth";
 
 export default {
   name: 'HomeView',
@@ -25,10 +27,34 @@ export default {
     RightContent,
     Posts
   },
+  data: 
+    function() {
+        return {
+            //goes to auth.js for authentication
+            authResult: auth.authenticated()
+        }
+    },
   methods: {
     ResetAllLikes: function() {
         this.$store.dispatch("ResetAllLikesAct");
-    }
+    },
+    Logout() {
+        fetch("http://localhost:3000/auth/logout", {
+            credentials: 'include', // for cookies
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+            console.log('jwt removed');
+            console.log('jwt removed:' + auth.authenticated());
+            this.$router.push("/login");
+        })
+        .catch((e) => {
+            console.log(e);
+            console.log("error logout");
+        });
+    },
+    
   }
   
 }
