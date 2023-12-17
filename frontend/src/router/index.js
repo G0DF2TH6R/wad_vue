@@ -4,6 +4,7 @@ import LoginView from '../views/LoginView.vue'
 import ContactUsView from '../views/ContactUsView.vue'
 import signUpView from '../views/signUpView.vue'
 import AddPostView from "../views/AddPostView.vue"
+import UpdatePost from "../views/UpdatePostView"
 import auth from "../auth";
 
 const routes = [
@@ -39,6 +40,19 @@ const routes = [
     path: "/addPost",
     name: "addPost",
     component: AddPostView,
+    beforeEnter: async(to, from, next) => {
+      let authResult = await auth.authenticated();
+      if (!authResult) {
+          next('/login')
+      } else {
+          next();
+      }
+    }
+  },
+  {
+    path: "/UpdatePost",
+    name: "UpdatePost",
+    component: UpdatePostView,
     beforeEnter: async(to, from, next) => {
       let authResult = await auth.authenticated();
       if (!authResult) {

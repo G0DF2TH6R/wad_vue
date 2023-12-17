@@ -45,6 +45,24 @@ app.delete("/api/posts", async(req, res) => {
     }
 })
 
+app.get('/api/posts/:id', async(req, res) => {
+    try {
+        console.log("get a post with route parameter  request has arrived");
+        // The req.params property is an object containing properties mapped to the named route "parameters". 
+        // For example, if you have the route /posts/:id, then the "id" property is available as req.params.id.
+        const { id } = req.params; // assigning all route "parameters" to the id "object"
+        const posts = await pool.query( // pool.query runs a single query on the database.
+            //$1 is mapped to the first element of { id } (which is just the value of id). 
+            "SELECT * FROM posttable WHERE id = $1", [id]
+        );
+        res.json(posts.rows[0]); // we already know that the row array contains a single element, and here we are trying to access it
+        // The res.json() function sends a JSON response. 
+        // This method sends a response (with the correct content-type) that is the parameter converted to a JSON string using the JSON.stringify() method.
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
 app.get('/api/posts', async(req, res) => {
     try {
         console.log("get posts request has arrived");

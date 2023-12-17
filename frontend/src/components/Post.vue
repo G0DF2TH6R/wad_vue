@@ -1,5 +1,5 @@
 <template>
-    <div class="post">
+    <div @click="ClickedAPost" class="post">
         <div class="postHeader">
             <div style="display: flex;">
                 <img src="@/assets/placeholderProfilePicture.png" class="postProfileIcon">
@@ -24,8 +24,18 @@ export default {
         }
     },
     methods: {
-        IncreaseLike: function(id) {
-            this.$store.dispatch("IncreaseLikeAct", id)
+        ClickedAPost() {
+            const postId = this.$router.params.id;
+            fetch("http://localhost:3000/api/posts/${postId}")
+            .then(response => response.json())
+            .then(data => {
+                this.post = data;
+            })
+            
+            .catch(error => {
+            console.error('Error fetching post details:', error);
+                });
+            this.$router.push("/posts/${postId}");
         }
     }
 }
