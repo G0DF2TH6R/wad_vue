@@ -41,7 +41,7 @@ export default {
     },
     DeleteAll: async function() {
       const response = await fetch("http://localhost:3000/api/posts", {
-        method: "POST",
+        method: "DELETE",
         credentials: 'include'
       });
       console.log(response);
