@@ -41,6 +41,7 @@ export default {
         credentials: 'include'
       });
       console.log(response);
+      location.reload()
     }
   }
   

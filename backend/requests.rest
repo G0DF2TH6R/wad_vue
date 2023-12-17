@@ -16,6 +16,16 @@ Content-Type: application/json
     "urlLink": "https://www.capnunes.com/wp-content/uploads/2021/05/delta-11.jpg"
   }
 
+### replace post
+PUT http://localhost:3000/api/posts/12
+Content-Type: application/json
+
+  {
+    "id": 14,
+    "body": "update",
+    "urlLink": "https://www.capnunes.com/wp-content/uploads/2021/05/delta-11.jpg"
+  }
+
 
 ### get all posts
 GET http://localhost:3000/api/posts

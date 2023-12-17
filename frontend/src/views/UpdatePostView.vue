@@ -1,15 +1,15 @@
 <template>
-    <Post/>
-    <h1>Hello</h1>
+    <UpdatePost :id="$route.params.id" />
 </template>
 
 <script>
-import Post from "@/components/Post.vue";
+import UpdatePost from "@/components/UpdatePost.vue";
+
 
 export default {
-    name: "UpdatePost",
+    name: "UpdatePostView",
     components: {
-        Post,
+        UpdatePost,
     }
 }
 </script>

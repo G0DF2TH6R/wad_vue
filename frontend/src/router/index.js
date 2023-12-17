@@ -50,8 +50,8 @@ const routes = [
     }
   },
   {
-    path: "/UpdatePost",
-    name: "UpdatePost",
+    path: "/UpdatePostView/:id",
+    name: "UpdatePostView",
     component: UpdatePostView,
     beforeEnter: async(to, from, next) => {
       let authResult = await auth.authenticated();

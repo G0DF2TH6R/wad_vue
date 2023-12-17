@@ -1,45 +1,66 @@
 <template>
-    <body>
+    <form v-on:submit.prevent class="form">
         <h5>Update post</h5>
         <label>Body</label>
-        <input class="input" name="postBody" id="postBody" v-model="postBody" placeholder="Caption" required>
-        <input class="input" name="postLink" id="postLink" v-model="postLink" placeholder="Picture URL" required>
+        <input class="input" name="postBody" id="postBody" v-model="data.body"  required>
+        <input class="input" name="postLink" id="postLink" v-model="data.urllink" required>
         <button @click="UpdatePost" class="but">Update</button>
         <button @click="DeletePost" class="but">Delete</button>
-    </body>
+    </form>
 </template>
 
 <script>
 export default {
     name: "UpdatePost",
     props: {
-        postInfo: {
-
-        }
+        id: Number,
     },
     data() {
         return {
-            postBody: ""
+            data: []
         }
+    },
+    mounted() {
+        this.fetchData();
     },
     methods: {
         UpdatePost() {
-            const postId = this.$route.params.id;
-            fetch(`http://localhost:3000/api/posts/${postId}`), {
+            fetch(`http://localhost:3000/api/posts/${this.id}`, {
             method: "PUT",
             headers: {
             "Content-Type": "application/json",
             },
             credentials: 'include',
-            body: JSON.stringify({body: this.postBody, urlLink: this.postLink}),
-            }
+            body: JSON.stringify({body: this.postBody, urlLink: this.urllink}),
+            })
+        },
+
+        DeletePost() {
+            fetch(`http://localhost:3000/api/posts/${this.id}`, {
+            method: "DELETE"
+            })
+
+            location.assign('/')
+        },
+
+        fetchData() {
+            fetch(`http://localhost:3000/api/posts/${this.id}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                    this.data = data;
+                })
+                .catch(error =>{
+                    console.log(error)
+                });
+
         }
     }
 }
 </script>
 
 <style scoped>
-body {
+form {
     display: flex;
     flex-direction: column;
     width: 50%;

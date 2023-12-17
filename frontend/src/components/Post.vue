@@ -17,19 +17,7 @@ export default {
     },
     methods: {
         ClickedAPost(postId) {
-            fetch(`http://localhost:3000/api/posts/${postId}`)
-            .then(response => response.json())
-            .then(data => {
-                
-                console.log("abc" + data)
-                this.post = data;
-            })
-            .catch(error => {
-                console.error('Error fetching post details:', error);
-            });
-
-            this.$router.push(`/UpdatePost`);
-            
+            this.$router.push(`/UpdatePostView/${postId}`);
         }
     }
 }
