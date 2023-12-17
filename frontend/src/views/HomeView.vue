@@ -1,13 +1,12 @@
 <template>
   <Header/>
-    <button v-if = "authResult" @click="Logout">Logout</button>
+  <button @click="LogOut">Logout</button>
   <div class="wrapper">
     <LeftContent/>
     <Posts/>
-    <RightContent/>
+    <RightContent class="rightContent"/>
   </div>
   <button @click="$router.push('/addPost')">Add post</button>
-  <button v-on:click="ResetAllLikes">Reset Likes</button>
   <button v-on:click="DeleteAll">Delete all</button>
   <Footer/>
 </template>
@@ -18,7 +17,6 @@ import Footer from '@/components/Footer.vue';
 import LeftContent from '@/components/LeftContent.vue';
 import RightContent from '@/components/RightContent.vue';
 import Posts from '@/components/Posts.vue';
-import auth from "../auth";
 
 export default {
   name: 'HomeView',
@@ -29,47 +27,32 @@ export default {
     RightContent,
     Posts
   },
-  data: 
-    function() {
-        return {
-            //goes to auth.js for authentication
-            authResult: auth.authenticated()
-        }
-    },
   methods: {
-    ResetAllLikes: function() {
-        this.$store.dispatch("ResetAllLikesAct");
+    LogOut: async function() {
+      const response = await fetch("http://localhost:3000/auth/logout", {
+        credentials: 'include'
+      });
+      location.assign('#/login')
+      console.log(response);
     },
-    Logout() {
-        fetch("http://localhost:3000/auth/logout", {
-            credentials: 'include', // for cookies
-        })
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data);
-            console.log('jwt removed');
-            this.$router.push("/login");
-        })
-        .catch((e) => {
-            console.log(e);
-            console.log("error logout");
-        });
-    },
-
-    DeleteAll() {
-      fetch("http://localhost:3000/deleteAll", {
-        credentials: 'include',
-      })
+    DeleteAll: async function() {
+      const response = await fetch("http://localhost:3000/api/posts", {
+        method: "DELETE",
+        credentials: 'include'
+      });
+      console.log(response);
+      location.reload()
     }
-    
   }
   
 }
 </script>
 
 <style>
+  .rightContent {
+    max-width: 15%;
+  }
 
-  
   .wrapper {
     display: flex;
     flex-direction: row;

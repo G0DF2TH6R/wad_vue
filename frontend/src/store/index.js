@@ -15,8 +15,7 @@ export default createStore({
       {"id": "7", "likes":"0", "date": "10/10/2022", "author": "Maeve Black", "body": "Algorithms make me wanna go back to bed."},
       {"id": "8", "likes":"0", "date": "08/02/2023", "author": "Jilly Joe", "body": "Web application development is fun!"},
       {"id": "9", "likes":"0", "date": "10/02/2023", "author": "Ronald Donald", "body": "Thinking about the University Ball"}
-    ],
-    totalLikes: 0
+    ]
   },
   getters: {
     getAllPosts: (state) => state.posts,
@@ -37,8 +36,10 @@ export default createStore({
       state.posts.forEach(post => {
         post.likes = 0
       })
-      state.totalLikes = 0
     },
+    GetData: (state, newData) => {
+      state.posts = newData;
+    }
 
   },
   actions: {
@@ -47,6 +48,9 @@ export default createStore({
     },
     ResetAllLikesAct: (act) => {
       act.commit("ResetAllLikes");
+    },
+    GetDataAct: (act) => {
+      act.commit("GetData")
     }
   },
   modules: {
