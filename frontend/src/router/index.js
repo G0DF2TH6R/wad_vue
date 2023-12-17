@@ -4,7 +4,7 @@ import LoginView from '../views/LoginView.vue'
 import ContactUsView from '../views/ContactUsView.vue'
 import signUpView from '../views/signUpView.vue'
 import AddPostView from "../views/AddPostView.vue"
-import UpdatePost from "../views/UpdatePostView"
+import UpdatePostView from "../views/UpdatePostView"
 import auth from "../auth";
 
 const routes = [

@@ -1,5 +1,5 @@
 <template>
-    <div @click="ClickedAPost" class="post">
+    <div @click="ClickedAPost(postInfo.id)" class="post">
         <div class="postHeader">
             <div style="display: flex;">
                 <img src="@/assets/placeholderProfilePicture.png" class="postProfileIcon">
@@ -24,18 +24,18 @@ export default {
         }
     },
     methods: {
-        ClickedAPost() {
-            const postId = this.$router.params.id;
-            fetch("http://localhost:3000/api/posts/${postId}")
+        ClickedAPost(postId) {
+            fetch(`http://localhost:3000/api/posts/${postId}`)
             .then(response => response.json())
             .then(data => {
                 this.post = data;
+            }).then(() => {
+                this.$router.push(`/posts/${postId}`);
             })
-            
             .catch(error => {
             console.error('Error fetching post details:', error);
                 });
-            this.$router.push("/posts/${postId}");
+            
         }
     }
 }
