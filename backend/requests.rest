@@ -7,9 +7,19 @@ Content-Type: application/json
     "password": "user"
   }
 
+### upload post
+POST http://localhost:3000/api/posts
+Content-Type: application/json
+
+  {
+    "body": "Caption?",
+    "urlLink": "www.youtube.com",
+    "post_date": 2022-02-10
+  }
+
 
 ### get all posts
-GET http://localhost:3000/posts
+GET http://localhost:3000/api/posts
 
 ### login a user
 POST http://localhost:3000/auth/login
