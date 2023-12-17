@@ -7,6 +7,10 @@ Content-Type: application/json
     "password": "user"
   }
 
+
+### get all posts
+GET http://localhost:3000/posts
+
 ### login a user
 POST http://localhost:3000/auth/login
 Content-Type: application/json

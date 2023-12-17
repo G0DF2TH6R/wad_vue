@@ -20,30 +20,30 @@ const generateJWT = (id) => {
     return jwt.sign({ id }, secret, { expiresIn: maxAge })
 }
 
-app.get('/posts', async(req,res) => {
-    console.log("getting all posts from the DB")
-
-
-
-})
-//Vajab tegemist, prg saab body-s ainult pildi lingi ja captioni
-app.post("/addpost", async(req,res) => {
+app.post('/api/posts', async(req, res) => {
     try {
-        console.log("request to add a post");
+        console.log("a post request has arrived");
         const post = req.body;
         const newpost = await pool.query(
-            "INSERT INTO posttable(body) values ($1) RETURNING*", [post.body]
-            // * means that everything will be returned!
-    
+            "INSERT INTO posttable(title, body, urllink) values ($1, $2, $3)    RETURNING*", [post.title, post.body, post.urllink]
         );
         res.json(newpost);
+    } catch (err) {
+        console.error(err.message);
     }
-    catch (err) {
-        console.log("problem with posting a new post")
-        console.error(err.message)
-    }
+}); 
 
-})
+app.get('/api/posts', async(req, res) => {
+    try {
+        console.log("get posts request has arrived");
+        const posts = await pool.query(
+            "SELECT * FROM posttable"
+        );
+        res.json(posts.rows);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
 
 app.get('/auth/authenticate', async(req, res) => {
     console.log('authentication request has been arrived');
@@ -78,16 +78,13 @@ app.post('/auth/signup', async(req, res) => {
         console.log("a signup request has arrived");
         const { email, password } = req.body;
 
-        const salt = await bcrypt.genSalt(); //  generates the salt, i.e., a random string
-        const bcryptPassword = await bcrypt.hash(password, salt) // hash the password and the salt 
-        const authUser = await pool.query( // insert the user and the hashed password into the database
+        const salt = await bcrypt.genSalt();
+        const bcryptPassword = await bcrypt.hash(password, salt) 
+        const authUser = await pool.query(
             "INSERT INTO users(email, password) values ($1, $2) RETURNING*", [email, bcryptPassword]
         );
         console.log(authUser.rows[0].id);
-        const token = await generateJWT(authUser.rows[0].id); // generates a JWT by taking the user id as an input (payload)
-        //console.log(token);
-        //res.cookie("isAuthorized", true, { maxAge: 1000 * 60, httpOnly: true });
-        //res.cookie('jwt', token, { maxAge: 6000000, httpOnly: true });
+        const token = await generateJWT(authUser.rows[0].id);
         res
             .status(201)
             .cookie('jwt', token, { maxAge: 6000000, httpOnly: true })

@@ -83,16 +83,16 @@
     }
 
     .but{
-    margin: auto;
-    background: #5E5DF0;
-    border-radius: 999px;
-    color: #FFFFFF;
-    cursor: pointer;
-    font-size: 16px;
-    line-height: 24px;
-    padding: 8px 18px;
-    width: fit-content;
-    margin-top: 10px;
+        margin: auto;
+        background: #5E5DF0;
+        border-radius: 999px;
+        color: #FFFFFF;
+        cursor: pointer;
+        font-size: 16px;
+        line-height: 24px;
+        padding: 8px 18px;
+        width: fit-content;
+        margin-top: 10px;
     }
 
     .lable{
