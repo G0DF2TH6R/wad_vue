@@ -13,8 +13,7 @@ Content-Type: application/json
 
   {
     "body": "Caption?",
-    "urlLink": "www.youtube.com",
-    "post_date": 2022-02-10
+    "urlLink": "www.youtube.com"
   }
 
 
