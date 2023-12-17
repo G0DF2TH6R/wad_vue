@@ -13,12 +13,16 @@ Content-Type: application/json
 
   {
     "body": "Caption?",
-    "urlLink": "www.youtube.com"
+    "urlLink": "https://www.capnunes.com/wp-content/uploads/2021/05/delta-11.jpg"
   }
 
 
 ### get all posts
 GET http://localhost:3000/api/posts
+
+
+### delete all posts
+DELETE http://localhost:3000/api/posts
 
 ### login a user
 POST http://localhost:3000/auth/login

@@ -38,7 +38,14 @@ export default {
       });
       location.assign('#/login')
       console.log(response);
-    }   
+    },
+    DeleteAll: async function() {
+      const response = await fetch("http://localhost:3000/api/posts", {
+        method: "POST",
+        credentials: 'include'
+      });
+      console.log(response);
+    }
   }
   
 }

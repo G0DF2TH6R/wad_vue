@@ -31,7 +31,19 @@ app.post('/api/posts', async(req, res) => {
     } catch (err) {
         console.error(err.message);
     }
-}); 
+});
+
+app.delete("/api/posts", async(req, res) => {
+    try {
+        console.log("removing all posts")
+        const response = await pool.query(
+            "TRUNCATE posttable"
+        );
+        res.json(response);
+    } catch(err) {
+        console.log(err)
+    }
+})
 
 app.get('/api/posts', async(req, res) => {
     try {
