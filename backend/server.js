@@ -25,7 +25,7 @@ app.post('/api/posts', async(req, res) => {
         console.log("a post request has arrived");
         const post = req.body;
         const newpost = await pool.query(
-            "INSERT INTO posttable(title, body, urllink) values ($1, $2, $3)    RETURNING*", [post.title, post.body, post.urllink]
+            "INSERT INTO posttable(body, urllink, date) values ($1, $2, $3) RETURNING*", [post.body, post.urlLink, Date.now()]
         );
         res.json(newpost);
     } catch (err) {

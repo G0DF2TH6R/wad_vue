@@ -24,7 +24,7 @@ export default {
             "Content-Type": "application/json",
             },
             credentials: 'include',
-            body: JSON.stringify({body: this.postBody, image: this.postLink}),
+            body: JSON.stringify({body: this.postBody, urlLink: this.postLink}),
             }
         }   
     }
