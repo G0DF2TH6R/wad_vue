@@ -1,6 +1,6 @@
 <template>
     <div class="posts" >
-        <Post v-for="post in posts" :postInfo="post" />
+        <Post v-for="post in data" :postInfo="post" />
     </div>
 </template>
 
@@ -12,10 +12,27 @@ export default {
     components: {
     Post
     },
-    computed: {
-        posts() {
-            return this.$store.getters.getAllPosts;
+    data() {
+        return {
+            data: []
         }
+    },
+    mounted() {
+        this.fetchData();
+    },
+    methods: {
+        fetchData() {
+            fetch("http://localhost:3000/api/posts")
+                .then(response => response.json())
+                .then(data => {
+                    this.data = data;
+                })
+                .catch(error =>{
+                    console.log(error)
+                });
+
+        }
+
     }
 }
 

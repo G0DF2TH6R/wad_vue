@@ -1,11 +1,10 @@
 <template>
-    <body>
+    <form v-on:submit.prevent>
         <h5>Add post</h5>
-        <label>Body</label>
         <input class="input" name="postBody" id="postBody" v-model="postBody" placeholder="Caption" required>
         <input class="input" name="postLink" id="postLink" v-model="postLink" placeholder="Picture URL" required>
-        <button @click="Addpost" class="but">Add</button>
-    </body>
+        <button @click="AddPost" class="but">Add</button>
+    </form>
 </template>
 
 <script>
@@ -13,18 +12,20 @@ export default {
     name: "Addpost",
     data() {
         return {
-            postBody: ""
+            postBody: "",
+            postLink: ""
         }
     },
     methods: {
-        Addpost() {
-            fetch("http://localhost:3000/addpost"), {
+        AddPost() {
+            const new_post = {body: this.postBody, urlLink: this.postLink, post_date: new Date()};
+            console.log(new_post)
+            fetch("http://localhost:3000/api/posts"), {
             method: "POST",
             headers: {
             "Content-Type": "application/json",
             },
-            credentials: 'include',
-            body: JSON.stringify({body: this.postBody, urlLink: this.postLink}),
+            body: new_post
             }
         }   
     }
@@ -32,7 +33,7 @@ export default {
 </script>
 
 <style scoped>
-body {
+form {
     display: flex;
     flex-direction: column;
     width: 50%;
