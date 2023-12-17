@@ -3,7 +3,7 @@
         <div class="postHeader">
             <p style="margin-right: 5px;">{{ new Date(postInfo.post_date).toDateString() }}</p>
         </div>
-        <img class="postImage" v-if="postInfo.image" :src="postInfo.image">
+        <img class="postImage" v-if="postInfo.urllink" :src="postInfo.urllink">
         <p class="postText">{{ postInfo.body }}</p>
     </div>
 </template>
@@ -25,8 +25,8 @@ export default {
                 this.post = data;
             })
             .catch(error => {
-            console.error('Error fetching post details:', error);
-                });
+                console.error('Error fetching post details:', error);
+            });
 
             this.$router.push(`/UpdatePost`);
             

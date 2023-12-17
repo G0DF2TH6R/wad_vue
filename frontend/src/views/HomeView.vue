@@ -7,7 +7,6 @@
     <RightContent class="rightContent"/>
   </div>
   <button @click="$router.push('/addPost')">Add post</button>
-  <button v-on:click="ResetAllLikes">Reset Likes</button>
   <button v-on:click="DeleteAll">Delete all</button>
   <Footer/>
 </template>
@@ -29,9 +28,6 @@ export default {
     Posts
   },
   methods: {
-    ResetAllLikes: function() {
-        this.$store.dispatch("ResetAllLikesAct");
-    },
     LogOut: async function() {
       const response = await fetch("http://localhost:3000/auth/logout", {
         credentials: 'include'

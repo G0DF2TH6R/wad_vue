@@ -27,6 +27,8 @@ export default {
                 credentials: 'include',
                 body: JSON.stringify(new_post)
             })
+
+            location.assign('#/')
         }   
     }
 }
