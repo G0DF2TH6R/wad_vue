@@ -63,6 +63,34 @@ app.get('/api/posts/:id', async(req, res) => {
     }
 });
 
+app.put('/api/posts/:id', async(req, res) => {
+    try {
+        const { id } = req.params;
+        const post = req.body;
+        console.log("update request has arrived");
+        const updatepost = await pool.query(
+            "UPDATE posttable SET (title, body, urllink) = ($2, $3, $4) WHERE id = $1", [id, post.title, post.body, post.urllink]
+        );
+        res.json(updatepost);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+app.delete('/api/posts/:id', async(req, res) => {
+    try {
+        const { id } = req.params;
+        //const post = req.body; // we do not need a body for a delete request
+        console.log("delete a post request has arrived");
+        const deletepost = await pool.query(
+            "DELETE FROM posttable WHERE id = $1", [id]
+        );
+        res.json(deletepost);
+    } catch (err) {
+        console.error(err.message);
+    }
+}); 
+
 app.get('/api/posts', async(req, res) => {
     try {
         console.log("get posts request has arrived");

@@ -4,21 +4,35 @@
         <label>Body</label>
         <input class="input" name="postBody" id="postBody" v-model="postBody" placeholder="Caption" required>
         <input class="input" name="postLink" id="postLink" v-model="postLink" placeholder="Picture URL" required>
-        <button @click="UpdatePost" class="but">Add</button>
+        <button @click="UpdatePost" class="but">Update</button>
+        <button @click="DeletePost" class="but">Delete</button>
     </body>
 </template>
 
 <script>
 export default {
     name: "UpdatePost",
+    props: {
+        postInfo: {
+
+        }
+    },
     data() {
         return {
             postBody: ""
         }
     },
     methods: {
-        UpdatePost: async function() {
-
+        UpdatePost() {
+            const postId = this.$route.params.id;
+            fetch(`http://localhost:3000/api/posts/${postId}`), {
+            method: "PUT",
+            headers: {
+            "Content-Type": "application/json",
+            },
+            credentials: 'include',
+            body: JSON.stringify({body: this.postBody, urlLink: this.postLink}),
+            }
         }
     }
 }

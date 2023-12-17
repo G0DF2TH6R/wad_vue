@@ -28,13 +28,15 @@ export default {
             fetch(`http://localhost:3000/api/posts/${postId}`)
             .then(response => response.json())
             .then(data => {
+                
+                console.log("abc" + data)
                 this.post = data;
-            }).then(() => {
-                this.$router.push(`/posts/${postId}`);
             })
             .catch(error => {
             console.error('Error fetching post details:', error);
                 });
+
+            this.$router.push(`/UpdatePost`);
             
         }
     }
@@ -47,6 +49,7 @@ export default {
         width: 90%;
         margin-left: 5%;
         margin-top: 10px;
+        cursor: pointer;
     }
 
     .postHeader {
