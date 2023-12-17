@@ -1,18 +1,10 @@
 <template>
     <div @click="ClickedAPost(postInfo.id)" class="post">
         <div class="postHeader">
-            <div style="display: flex;">
-                <img src="@/assets/placeholderProfilePicture.png" class="postProfileIcon">
-                <p>{{ postInfo.author }}</p>
-            </div>
-            <p style="margin-right: 5px;">{{ postInfo.date }}</p>
+            <p style="margin-right: 5px;">{{ new Date(postInfo.post_date).toDateString() }}</p>
         </div>
         <img class="postImage" v-if="postInfo.image" :src="postInfo.image">
         <p class="postText">{{ postInfo.body }}</p>
-        <div class="likeInfo">
-            <button v-on:click="IncreaseLike(postInfo.id)"><img src="@/assets/likeIcon.png"></button>
-            <p>Likes: {{ postInfo.likes }}</p>
-        </div>
     </div>
 </template>
 
@@ -49,6 +41,10 @@ export default {
         width: 90%;
         margin-left: 5%;
         margin-top: 10px;
+        cursor: pointer;
+    }
+
+    .post:hover {
         cursor: pointer;
     }
 
