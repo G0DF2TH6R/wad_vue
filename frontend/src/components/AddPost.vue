@@ -17,16 +17,16 @@ export default {
         }
     },
     methods: {
-        AddPost() {
-            const new_post = {body: this.postBody, urlLink: this.postLink, post_date: new Date()};
-            console.log(new_post)
-            fetch("http://localhost:3000/api/posts"), {
-            method: "POST",
-            headers: {
-            "Content-Type": "application/json",
-            },
-            body: new_post
-            }
+        async AddPost() {
+            const new_post = {body: this.postBody, urlLink: this.postLink};
+            await fetch("http://localhost:3000/api/posts", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                credentials: 'include',
+                body: JSON.stringify(new_post)
+            })
         }   
     }
 }
