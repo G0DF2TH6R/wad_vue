@@ -1,58 +1,65 @@
 <template>
-    <form class="form">
+    <form v-on:submit.prevent class="form">
         <label class="lable" for="email">Email</label>
         <input class="fInput" type="email" name="email" id="email1" v-model="email" placeholder="email" required>
         <label class="lable" for="password">Password</label>
         <input class="fInput" type="password" name="password" id="pass1" v-model="password" placeholder="password" required>
         
-        <div class ="buttonsRow">
-        <button @click="LogIn" class="but">login</button>
-        <p>Or</p>
-        <button @click="$router.push('/signUp')" class="but">Signup</button>
+        <div v-if="errors" class="error-message">
+            <p>Unable to log in. The email or password is incorrect.</p>
+        </div>
+
+        <div class="buttonsRow">
+            <button @click="LogIn" class="but">login</button>
+            <p>Or</p>
+            <button @click="$router.push('/signUp')" class="but">Signup</button>
         </div>
     </form>
-    </template>
+</template>
     
-    <script>
+<script>
     export default {
-    name: "LoginForm",
-    data() {
-        return {
-        password: "",
-        email: "",
-        passwordErrors: [],
-        };
-    },
-    methods: {
-    
-    LogIn() {
-        var data = {
-        email: this.email,
-        password: this.password
-        };
-        // using Fetch - post method - send an HTTP post request to the specified URI with the defined body
-        fetch("http://localhost:3000/auth/login", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
+        name: "LoginForm",
+        data() {
+            return {
+            password: "",
+            email: "",
+            errors: false
+            };
         },
-            credentials: 'include', //  Don't forget to specify this if you need cookies
-            body: JSON.stringify(data),
-        })
-        .then((response) => response.json())
-        .then((data) => {
-        console.log(data);
+        methods: {
+            async LogIn() {
+                var data = {
+                email: this.email,
+                password: this.password
+                };
 
-        this.$router.push("/");
-        })
-        .catch((e) => {
-        console.log(e);
-        console.log("error");
-        });
-        },
-    },
-    };
-    </script>    
+                const response = await fetch("http://localhost:3000/auth/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify(data)
+                })
+                
+
+                switch (response.status) {
+                    case 401:
+                        this.errors = true;
+                        break;
+                    case 201:
+                        this.errors = false
+                        this.$router.push('/')
+                        break;
+                }
+
+
+                return await response.json();
+            }
+        }
+    }
+</script>    
     
 <style>
 

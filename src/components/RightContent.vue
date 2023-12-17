@@ -1,6 +1,6 @@
 <template>
     <div class="right-content">
-        <h1>Total likes: {{ totalLikes }}</h1>
+        <p>Sponsored by the University of Tartu</p>
     </div>
 </template>
 
@@ -8,14 +8,6 @@
 
 export default {
     name: 'RightContent',
-    
-    computed: {
-        totalLikes() {
-        return this.$store.getters.getTotalLikes;
-    }
-    },
-    
-
 }
 </script>
 

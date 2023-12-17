@@ -2,7 +2,8 @@
     <body>
         <h5>Add post</h5>
         <label>Body</label>
-        <input class="input" name="postBody" id="postBody" v-model="postBody" placeholder="body" required>
+        <input class="input" name="postBody" id="postBody" v-model="postBody" placeholder="Caption" required>
+        <input class="input" name="postLink" id="postLink" v-model="postLink" placeholder="Picture URL" required>
         <button @click="Addpost" class="but">Add</button>
     </body>
 </template>
@@ -23,7 +24,7 @@ export default {
             "Content-Type": "application/json",
             },
             credentials: 'include',
-            body: JSON.stringify(this.postBody),
+            body: JSON.stringify({body: this.postBody, image: this.postLink}),
             }
         }   
     }
